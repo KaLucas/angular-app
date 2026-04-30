@@ -1,0 +1,25 @@
+section {
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    .redirect-button-list {
+      justify-content: flex-end;
+      padding-top: 24px;
+      padding-right: 24px;
+    }
+  .login-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 16px;
+    .form-container {
+      justify-content: center;
+      align-items: center;
+      form {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
