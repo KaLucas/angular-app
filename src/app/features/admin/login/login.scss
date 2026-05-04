@@ -18,6 +18,9 @@ section {
       align-items: center;
       form {
         flex-direction: column;
+        .field-wrapper {
+          padding-bottom: 20px;
+        }
       }
     }
   }

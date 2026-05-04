@@ -41,6 +41,21 @@ mat-form-field {
   width: 300px;
 }
 
+.mat-mdc-form-field-subscript-wrapper:not(:has(mat-error)) {
+  display: none;
+}
+
 .flex {
   display: flex;
 }
+
+.snackbar-error {
+  .mdc-snackbar__surface {
+  background-color: var(--mat-sys-error) !important;
+  color: var(--mat-sys-on-error) !important;
+  }
+  button {
+    color: var(--mat-sys-on-error) !important;
+  }
+}
+
