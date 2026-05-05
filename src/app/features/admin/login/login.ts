@@ -51,7 +51,7 @@ export class Login {
     const success = this.auth.login(email, password);
 
     if (success) {
-      this.router.navigate(['/admin/users']);
+      this.router.navigate(['/admin/dashboard']);
     } else {
       this.openSnackbar();
     }

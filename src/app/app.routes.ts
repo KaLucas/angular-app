@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Login } from './features/admin/login/login';
-import { Users } from './features/admin/users/users';
+import { Dashboard } from './features/admin/dashboard/dashboard';
 
 export const routes: Routes = [
   {
@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: Login,
   },
   {
-    path: 'admin/users',
-    component: Users,
+    path: 'admin/dashboard',
+    component: Dashboard,
   },
 ];

@@ -1,0 +1,27 @@
+<aside class="flex">
+  <div class="menu-wrapper flex">
+    <div class="top-menu flex">
+      <div class="user-summary-card flex">
+        <div class="users-data flex">
+          <fa-icon [icon]="faUsers" />
+          <p class="users-title">Total de usuários</p>
+        </div>
+        <p class="users-total">13</p>
+        <p class="users-last-update">Último cadastro: 24/04/2026</p>
+      </div>
+    </div>
+    <div class="bottom-menu">
+      <div class="logout flex">
+        <button matFab extended>
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="img-wrapper">
+        <img src="/assets/angular-app.png" alt="Angular App Logo" class="logo" />
+      </div>
+    </div>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+</aside>

@@ -1,0 +1,62 @@
+:host {
+  width: 270px;
+  min-height: 100vh;
+  aside {
+    min-height: 100vh;
+    .menu-wrapper {
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+      .top-menu {
+        p {
+          opacity: 0.6;
+        }
+        .user-summary-card {
+          flex: 1;
+          box-sizing: border-box;
+          border-radius: 12px;
+          border: 1px solid var(--mat-sys-surface-variant);
+          padding: 24px;
+          flex-direction: column;
+          gap: 20px;
+          .users-data {
+            flex-direction: row;
+            gap: 8px;
+            align-items: center;
+            fa-icon {
+              display: block;
+              color: var(--mat-sys-primary);
+            }
+          }
+          .users-total {
+            font-size: 34px;
+            font-weight: bold;
+            opacity: 1;
+          }
+        }
+      }
+      .bottom-menu {
+        .logout {
+          margin-bottom: 32px;
+          align-items: center;
+          button {
+            font-size: 16px;
+            width: 100%;
+            box-shadow: none;
+          }
+        }
+        .img-wrapper {
+          padding: 16px;
+          img {
+            display: block;
+            width: 120px;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+
