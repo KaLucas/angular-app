@@ -1,0 +1,20 @@
+section {
+  width: 100%;
+  padding: 16px;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  .page-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .table-wrapper {
+    width: 100%;
+    border: 1px solid var(--mat-sys-outline-variant);
+    border-radius: 4px;
+    overflow: hidden;
+    mat-icon {
+      color: var(--mat-sys-outline);
+    }
+  }
+}
