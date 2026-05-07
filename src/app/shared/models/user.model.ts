@@ -22,3 +22,24 @@ export interface TableUsersList {
   created_at: string;
   updated_at: string;
 }
+
+export interface GetUsersParams {
+  page: number;
+  limit: number;
+}
+
+export interface CreateUserData {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface GetUsersResponse {
+  data: Array<User>;
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+    pages: number;
+  };
+}

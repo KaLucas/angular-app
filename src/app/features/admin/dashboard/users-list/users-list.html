@@ -7,7 +7,10 @@
     </button>
   </div>
   <div class="table-wrapper">
-    <table mat-table [dataSource]="dataSource">
+    @if (isLoading()) {
+      <mat-progress-bar mode="indeterminate" />
+    }
+    <table mat-table [dataSource]="dataSource" [class.loading]="isLoading()">
       <ng-container matColumnDef="first_name">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
         <td mat-cell *matCellDef="let user">{{ user.data.first_name }}</td>
@@ -25,35 +28,38 @@
 
       <ng-container matColumnDef="created_at">
         <th mat-header-cell *matHeaderCellDef>Criado em</th>
-        <td mat-cell *matCellDef="let user">{{ user.created_at }}</td>
+        <td mat-cell *matCellDef="let user">{{ formatDate(user.created_at) }}</td>
       </ng-container>
 
       <ng-container matColumnDef="updated_at">
         <th mat-header-cell *matHeaderCellDef>Criado em</th>
-        <td mat-cell *matCellDef="let user">{{ user.updated_at }}</td>
+        <td mat-cell *matCellDef="let user">{{ formatDate(user.updated_at) }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let user">
-          <button matIconButton>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button matIconButton>
-            <mat-icon>delete</mat-icon>
-          </button>
+          <div class="actions-wrapper">
+            <button matIconButton>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button matIconButton>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <mat-paginator
+      [length]="meta()?.total ?? 0"
+      [pageSize]="limit()"
+      [pageSizeOptions]="[10, 25]"
+      (page)="onPageChange($event)"
+      [disabled]="isLoading()"
+      showFirstLastButtons
+    />
   </div>
-
-  <mat-paginator
-    [length]="dataSource.data.length"
-    [pageSize]="10"
-    [pageSizeOptions]="[10, 25]"
-    showFirstLastButtons
-  />
 </section>

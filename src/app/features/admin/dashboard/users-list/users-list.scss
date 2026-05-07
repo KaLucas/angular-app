@@ -13,8 +13,21 @@ section {
     border: 1px solid var(--mat-sys-outline-variant);
     border-radius: 4px;
     overflow: hidden;
-    mat-icon {
-      color: var(--mat-sys-outline);
+    position: relative;
+
+    table {
+      &.loading {
+        opacity: 0.5;
+        pointer-events: none;
+      }
     }
+
+    .actions-wrapper {
+      white-space: nowrap;
+      mat-icon {
+        color: var(--mat-sys-outline);
+      }
+    }
+
   }
 }
