@@ -28,14 +28,8 @@ export interface GetUsersParams {
   limit: number;
 }
 
-export interface CreateUserData {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
 export interface GetUsersResponse {
-  data: Array<User>;
+  data: User[];
   meta: {
     page: number;
     limit: number;

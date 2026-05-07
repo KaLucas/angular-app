@@ -5,8 +5,10 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { User } from '../../../../shared/models/user.model';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { UsersStore } from '../../../../store/services/users-store';
+import { UsersStore } from '../../../../shared/store/services/users-store';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialog } from '../dialogs/delete-dialog/delete-dialog';
 
 @Component({
   selector: 'app-users-list',
@@ -24,13 +26,13 @@ import { DatePipe } from '@angular/common';
 export class UsersList {
   protected readonly store = inject(UsersStore);
   protected readonly dataSource = new MatTableDataSource<User>([]);
+  readonly dialog = inject(MatDialog);
 
-  protected onPageChange(event: PageEvent): void {
-    this.store.params.update((params) => ({
-      ...params,
+  protected onPageChange(event: PageEvent) {
+    this.store.updateParams({
       page: event.pageIndex + 1,
       limit: event.pageSize,
-    }));
+    });
   }
 
   protected readonly displayedColumns = [
@@ -41,4 +43,16 @@ export class UsersList {
     'updated_at',
     'actions',
   ];
+
+  openDeleteDialog(user: User): void {
+    const dialogRef = this.dialog.open(DeleteDialog, {
+      data: user,
+    });
+
+    dialogRef.afterClosed().subscribe((deleted) => {
+      if (deleted) {
+        this.store.reloadUsers();
+      }
+    });
+  }
 }

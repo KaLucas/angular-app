@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../../../services/auth-service';
-import { UsersStore } from '../../../../store/services/users-store';
+import { UsersStore } from '../../../../shared/store/services/users-store';
 import { DatePipe } from '@angular/common';
 
 @Component({
