@@ -15,7 +15,7 @@ export class DeleteDialog {
   readonly dialogRef = inject(MatDialogRef<DeleteDialog>);
   readonly data = inject<User>(MAT_DIALOG_DATA);
 
-  delete() {
+  onDelete() {
     this.userService.deleteUser(this.data.id).subscribe({
       next: () => {
         this.dialogRef.close(true);

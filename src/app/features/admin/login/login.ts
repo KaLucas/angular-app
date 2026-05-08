@@ -44,7 +44,7 @@ export class Login {
     });
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.loginForm().invalid()) return;
 
     const { email, password } = this.loginModel();

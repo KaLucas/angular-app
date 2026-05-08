@@ -1,0 +1,20 @@
+<form class="flex" method="dialog">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" [formField]="userForm.first_name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Sobrenome</mat-label>
+      <input matInput type="text" [formField]="userForm.last_name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [formField]="userForm.email" />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button matButton mat-dialog-close>Cancelar</button>
+    <button matButton [mat-dialog-close]="true">Confirmar</button>
+  </mat-dialog-actions>
+</form>

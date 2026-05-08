@@ -9,6 +9,7 @@ import { UsersStore } from '../../../../shared/store/services/users-store';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialog } from '../dialogs/delete-dialog/delete-dialog';
+import { UserFormDialog } from '../dialogs/user-form-dialog/user-form-dialog';
 
 @Component({
   selector: 'app-users-list',
@@ -54,5 +55,17 @@ export class UsersList {
         this.store.reloadUsers();
       }
     });
+  }
+
+  openUserFormDialog(user?: User): void {
+    const dialogRef = this.dialog.open(UserFormDialog, {
+      data: user ?? null,
+    });
+
+    // dialogRef.afterClosed().subscribe((deleted) => {
+    //   if (deleted) {
+    //     this.store.reloadUsers();
+    //   }
+    // });
   }
 }
