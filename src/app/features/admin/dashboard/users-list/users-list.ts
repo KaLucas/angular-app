@@ -50,9 +50,11 @@ export class UsersList {
       data: user,
     });
 
-    dialogRef.afterClosed().subscribe((deleted) => {
-      if (deleted) {
-        this.store.reloadUsers();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        setTimeout(() => {
+          this.store.reloadUsers();
+        }, 1000);
       }
     });
   }
@@ -66,7 +68,7 @@ export class UsersList {
       if (result) {
         setTimeout(() => {
           this.store.reloadUsers();
-        }, 500);
+        }, 1000);
       }
     });
   }

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { email, form, required, FormField } from '@angular/forms/signals';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from '../../../shared/utils/snackbar-service';
 
 interface LoginData {
   email: string;
@@ -20,7 +21,7 @@ interface LoginData {
 export class Login {
   private auth = inject(AuthService);
   private router = inject(Router);
-  private snackBar = inject(MatSnackBar);
+  private snackbar = inject(SnackbarService);
 
   protected readonly loginModel = signal<LoginData>({
     email: '',
@@ -35,15 +36,6 @@ export class Login {
 
   protected readonly invalidCredentials = signal(false);
 
-  openSnackbar() {
-    this.snackBar.open('E-mail ou senha inválidos.', 'Fechar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      panelClass: ['snackbar-error'],
-    });
-  }
-
   onSubmit() {
     if (this.loginForm().invalid()) return;
 
@@ -53,7 +45,7 @@ export class Login {
     if (success) {
       this.router.navigate(['/admin/dashboard']);
     } else {
-      this.openSnackbar();
+      this.snackbar.error('E-mail ou senha inválidos.');
     }
   }
 }

@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { email, form, FormField, required } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../../../../services/users-service';
+import { SnackbarService } from '../../../../../shared/utils/snackbar-service';
 
 interface UserFormData {
   first_name: string;
@@ -24,6 +25,7 @@ export class UserFormDialog {
   readonly dialogRef = inject(MatDialogRef<UserFormDialog>);
   readonly data = inject<User | null>(MAT_DIALOG_DATA);
   protected readonly initialModel = signal<UserFormData | null>(null);
+  private snackbar = inject(SnackbarService);
 
   protected readonly userFormModel = signal<UserFormData>({
     first_name: '',
@@ -84,11 +86,11 @@ export class UserFormDialog {
         })
         .subscribe({
           next: () => {
+            this.snackbar.success('Usuário criado com sucesso.');
             this.dialogRef.close(true);
           },
-
           error: () => {
-            console.log('erro');
+            this.snackbar.error('Erro ao criar novo usuário.');
           },
         });
     } else {
@@ -101,11 +103,11 @@ export class UserFormDialog {
         })
         .subscribe({
           next: () => {
+            this.snackbar.success('Usuário salvo com sucesso.');
             this.dialogRef.close(true);
           },
-
           error: () => {
-            console.log('erro');
+            this.snackbar.error('Erro ao salvar usuário.');
           },
         });
     }

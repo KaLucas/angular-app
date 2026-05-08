@@ -51,11 +51,21 @@ mat-form-field {
 
 .snackbar-error {
   .mdc-snackbar__surface {
-  background-color: var(--mat-sys-error) !important;
-  color: var(--mat-sys-on-error) !important;
+    background-color: var(--mat-sys-error) !important;
+    color: var(--mat-sys-on-error) !important;
   }
   button {
     color: var(--mat-sys-on-error) !important;
+  }
+}
+
+.snackbar-success {
+  .mdc-snackbar__surface {
+    background-color: var(--mat-sys-primary-container) !important;
+    color: var(--mat-sys-on-surface) !important;
+  }
+  button {
+    color: var(--mat-sys-on-surface) !important;
   }
 }
 
