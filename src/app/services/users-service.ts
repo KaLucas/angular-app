@@ -2,7 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { signal } from '@angular/core';
 import { environment } from '../environments/environment';
-import { GetUsersParams, GetUsersResponse } from '../shared/models/user.model';
+import {
+  CreateUserData,
+  GetUsersParams,
+  GetUsersResponse,
+  UpdateUserData,
+} from '../shared/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +33,42 @@ export class UserService {
         'X-Reqres-Env': environment.env,
       },
     });
+  }
+
+  createUser(data: CreateUserData) {
+    return this.http.post(
+      this.baseUrl,
+      {
+        data,
+      },
+      {
+        params: { project_id: environment.projectId },
+        headers: {
+          'x-api-key': environment.apiKey,
+          'X-Reqres-Env': environment.env,
+        },
+      },
+    );
+  }
+
+  updateUser(data: UpdateUserData) {
+    return this.http.put(
+      `${this.baseUrl}/${data.id}`,
+      {
+        data: {
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+        },
+      },
+      {
+        params: { project_id: environment.projectId },
+        headers: {
+          'x-api-key': environment.apiKey,
+          'X-Reqres-Env': environment.env,
+        },
+      },
+    );
   }
 
   deleteUser(id: string) {

@@ -33,6 +33,6 @@ export class UsersStore {
   }
 
   reloadUsers() {
-    this.usersResource.reload();
+    this.params.update((current) => ({ ...current }));
   }
 }

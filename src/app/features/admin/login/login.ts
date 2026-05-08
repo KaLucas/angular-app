@@ -28,9 +28,9 @@ export class Login {
   });
 
   protected readonly loginForm = form(this.loginModel, (login) => {
-    required(login.email, { message: 'Email is required' });
-    email(login.email, { message: 'Enter a valid email address' });
-    required(login.password, { message: 'Password is required' });
+    required(login.email, { message: 'E-mail é obrigatório.' });
+    email(login.email, { message: 'E-mail em formato inválido.' });
+    required(login.password, { message: 'A senha é obrigatória.' });
   });
 
   protected readonly invalidCredentials = signal(false);

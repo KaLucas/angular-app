@@ -4,6 +4,11 @@
       <mat-label>Nome</mat-label>
       <input matInput type="text" [formField]="userForm.first_name" />
     </mat-form-field>
+    @if (userForm.first_name().touched()) {
+      @for (error of userForm.first_name().errors(); track error.kind) {
+        <mat-error>{{ error.message }}</mat-error>
+      }
+    }
     <mat-form-field>
       <mat-label>Sobrenome</mat-label>
       <input matInput type="text" [formField]="userForm.last_name" />
@@ -12,9 +17,16 @@
       <mat-label>Email</mat-label>
       <input matInput type="email" [formField]="userForm.email" />
     </mat-form-field>
+    @if (userForm.email().touched()) {
+      @for (error of userForm.email().errors(); track error.kind) {
+        <mat-error>{{ error.message }}</mat-error>
+      }
+    }
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button matButton mat-dialog-close>Cancelar</button>
-    <button matButton [mat-dialog-close]="true">Confirmar</button>
+    <button matButton [mat-dialog-close]="true" (click)="onSubmit()" [disabled]="!canSubmit()">
+      Confirmar
+    </button>
   </mat-dialog-actions>
 </form>

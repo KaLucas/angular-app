@@ -37,3 +37,16 @@ export interface GetUsersResponse {
     pages: number;
   };
 }
+
+export interface CreateUserData {
+  first_name: string;
+  last_name: string;
+  email: string;
+}
+
+export interface UpdateUserData {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+}

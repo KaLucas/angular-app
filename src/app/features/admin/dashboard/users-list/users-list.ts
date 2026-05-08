@@ -62,10 +62,12 @@ export class UsersList {
       data: user ?? null,
     });
 
-    // dialogRef.afterClosed().subscribe((deleted) => {
-    //   if (deleted) {
-    //     this.store.reloadUsers();
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        setTimeout(() => {
+          this.store.reloadUsers();
+        }, 500);
+      }
+    });
   }
 }
