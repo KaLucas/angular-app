@@ -1,0 +1,20 @@
+<header class="flex">
+  <h2><strong>Usuários cadastrados</strong></h2>
+  <div class="redirect-button-list flex">
+    <button matButton="elevated" (click)="goToAdmin()">Acessar admin</button>
+  </div>
+</header>
+<main>
+  <div class="main-wrapper">
+    <div class="main-content">
+      @for (user of users(); track user.id) {
+        <mat-card>
+          <mat-card-content>
+            <h3>{{ user.data.first_name }} {{ user.data.last_name }}</h3>
+            <p>{{ user.data.email }}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+  </div>
+</main>

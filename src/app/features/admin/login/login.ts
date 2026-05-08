@@ -36,6 +36,10 @@ export class Login {
 
   protected readonly invalidCredentials = signal(false);
 
+  protected goToList() {
+    this.router.navigate(['']);
+  }
+
   onSubmit() {
     if (this.loginForm().invalid()) return;
 

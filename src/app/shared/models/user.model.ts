@@ -24,8 +24,8 @@ export interface TableUsersList {
 }
 
 export interface GetUsersParams {
-  page: number;
-  limit: number;
+  page?: number;
+  limit?: number;
 }
 
 export interface GetUsersResponse {

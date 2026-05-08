@@ -19,14 +19,12 @@ export class UserService {
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
 
-  getUsers(params: GetUsersParams) {
-    const { page, limit } = params;
-
+  getUsers(params?: GetUsersParams) {
     return this.http.get<GetUsersResponse>(this.baseUrl, {
       params: {
         project_id: environment.projectId,
-        page,
-        limit,
+        ...(params?.page && { page: params.page }),
+        ...(params?.limit && { limit: params.limit }),
       },
       headers: {
         'x-api-key': environment.apiKey,
