@@ -5,8 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { email, form, required, FormField } from '@angular/forms/signals';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarService } from '../../../shared/utils/snackbar-service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 interface LoginData {
   email: string;
@@ -14,7 +14,13 @@ interface LoginData {
 }
 @Component({
   selector: 'app-login',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormField],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormField,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -22,6 +28,7 @@ export class Login {
   private auth = inject(AuthService);
   private router = inject(Router);
   private snackbar = inject(SnackbarService);
+  protected readonly isSubmitted = signal(false);
 
   protected readonly loginModel = signal<LoginData>({
     email: '',
@@ -42,6 +49,7 @@ export class Login {
 
   onSubmit() {
     if (this.loginForm().invalid()) return;
+    this.isSubmitted.set(true);
 
     const { email, password } = this.loginModel();
     const success = this.auth.login(email, password);
@@ -49,6 +57,7 @@ export class Login {
     if (success) {
       this.router.navigate(['/admin/dashboard']);
     } else {
+      this.isSubmitted.set(false);
       this.snackbar.error('E-mail ou senha inválidos.');
     }
   }

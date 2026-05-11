@@ -7,6 +7,7 @@ import { email, form, FormField, required } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../../../../services/users-service';
 import { SnackbarService } from '../../../../../shared/utils/snackbar-service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 interface UserFormData {
   first_name: string;
@@ -16,7 +17,14 @@ interface UserFormData {
 
 @Component({
   selector: 'app-user-form-dialog',
-  imports: [MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormField],
+  imports: [
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormField,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './user-form-dialog.html',
   styleUrl: './user-form-dialog.scss',
 })
@@ -26,6 +34,9 @@ export class UserFormDialog {
   readonly data = inject<User | null>(MAT_DIALOG_DATA);
   protected readonly initialModel = signal<UserFormData | null>(null);
   private snackbar = inject(SnackbarService);
+  protected readonly isSubmitted = signal(false);
+
+  protected readonly title = this.data?.id ? 'Editar usuário' : 'Cadastrar novo usuário';
 
   protected readonly userFormModel = signal<UserFormData>({
     first_name: '',
@@ -73,7 +84,13 @@ export class UserFormDialog {
     return !this.userForm().invalid() && this.hasChanges();
   });
 
+  onCancel() {
+    this.isSubmitted.set(false);
+    this.dialogRef.close(false);
+  }
+
   onSubmit() {
+    this.isSubmitted.set(true);
     if (this.userForm().invalid()) return;
     const { first_name, last_name, email } = this.userFormModel();
 

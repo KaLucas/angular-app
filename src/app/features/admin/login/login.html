@@ -37,7 +37,11 @@
           (click)="onSubmit()"
           [disabled]="loginForm().invalid()"
         >
-          Login
+          @if (isSubmitted()) {
+            <mat-progress-spinner diameter="20" mode="indeterminate" />
+          } @else {
+            Login
+          }
         </button>
       </form>
     </div>

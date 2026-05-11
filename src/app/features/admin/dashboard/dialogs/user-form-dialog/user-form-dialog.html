@@ -1,10 +1,11 @@
 <form class="flex" method="dialog">
+  <h2 mat-dialog-title>{{ title }}</h2>
   <mat-dialog-content>
     <mat-form-field>
       <mat-label>Nome</mat-label>
       <input matInput type="text" [formField]="userForm.first_name" />
     </mat-form-field>
-    @if (userForm.first_name().touched()) {
+    @if (isSubmitted() && userForm.first_name().touched()) {
       @for (error of userForm.first_name().errors(); track error.kind) {
         <mat-error>{{ error.message }}</mat-error>
       }
@@ -17,16 +18,20 @@
       <mat-label>Email</mat-label>
       <input matInput type="email" [formField]="userForm.email" />
     </mat-form-field>
-    @if (userForm.email().touched()) {
+    @if (isSubmitted() && userForm.email().touched()) {
       @for (error of userForm.email().errors(); track error.kind) {
         <mat-error>{{ error.message }}</mat-error>
       }
     }
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button matButton mat-dialog-close>Cancelar</button>
-    <button matButton [mat-dialog-close]="true" (click)="onSubmit()" [disabled]="!canSubmit()">
-      Confirmar
+    <button matButton type="button" (click)="onCancel()">Cancelar</button>
+    <button matButton (click)="onSubmit()" [disabled]="!canSubmit()">
+      @if (isSubmitted()) {
+        <mat-progress-spinner diameter="20" mode="indeterminate" />
+      } @else {
+        Confirmar
+      }
     </button>
   </mat-dialog-actions>
 </form>
