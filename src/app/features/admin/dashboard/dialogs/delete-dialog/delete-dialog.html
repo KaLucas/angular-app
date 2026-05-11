@@ -1,9 +1,7 @@
-<mat-dialog-content>
-  <p>
-    Deseja deletar o usuário <strong>{{ data.data.first_name }} {{ data.data.last_name }}</strong
-    >?
-  </p>
-</mat-dialog-content>
+<h3 mat-dialog-title data-testid="delete-title">
+  Deseja deletar o usuário <strong>{{ data.data.first_name }} {{ data.data.last_name }}</strong
+  >?
+</h3>
 <mat-dialog-actions align="end">
   <button matButton mat-dialog-close>Cancelar</button>
   <button matButton [mat-dialog-close]="true" (click)="onDelete()">

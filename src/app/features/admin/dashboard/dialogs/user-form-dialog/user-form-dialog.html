@@ -3,7 +3,12 @@
   <mat-dialog-content>
     <mat-form-field>
       <mat-label>Nome</mat-label>
-      <input matInput type="text" [formField]="userForm.first_name" />
+      <input
+        matInput
+        type="text"
+        [formField]="userForm.first_name"
+        data-testid="input-first-name"
+      />
     </mat-form-field>
     @if (isSubmitted() && userForm.first_name().touched()) {
       @for (error of userForm.first_name().errors(); track error.kind) {
@@ -12,11 +17,11 @@
     }
     <mat-form-field>
       <mat-label>Sobrenome</mat-label>
-      <input matInput type="text" [formField]="userForm.last_name" />
+      <input matInput type="text" [formField]="userForm.last_name" data-testid="input-last-name" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput type="email" [formField]="userForm.email" />
+      <input matInput type="email" [formField]="userForm.email" data-testid="input-email" />
     </mat-form-field>
     @if (isSubmitted() && userForm.email().touched()) {
       @for (error of userForm.email().errors(); track error.kind) {

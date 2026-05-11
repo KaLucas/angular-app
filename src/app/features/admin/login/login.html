@@ -29,13 +29,14 @@
           }
         </div>
         @if (invalidCredentials()) {
-          <mat-error>E-mail ou senha inválidos</mat-error>
+          <mat-error>E-mail ou senha inválidos.</mat-error>
         }
         <button
           matButton="filled"
           type="button"
           (click)="onSubmit()"
           [disabled]="loginForm().invalid()"
+          data-testid="login-button"
         >
           @if (isSubmitted()) {
             <mat-progress-spinner diameter="20" mode="indeterminate" />
