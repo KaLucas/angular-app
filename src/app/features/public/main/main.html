@@ -1,7 +1,12 @@
 <header class="flex">
   <h2><strong>Usuários cadastrados</strong></h2>
-  <div class="redirect-button-list flex">
-    <button matButton="elevated" (click)="goToAdmin()">Acessar admin</button>
+  <div class="actions-header flex">
+    <button matIconButton (click)="theme.toggle()">
+      <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+    <div class="redirect-button-list">
+      <button matButton="elevated" (click)="goToAdmin()">Acessar admin</button>
+    </div>
   </div>
 </header>
 <main>
