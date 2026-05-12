@@ -5,7 +5,9 @@
       <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
     <div class="redirect-button-list">
-      <button matButton="elevated" (click)="goToAdmin()">Acessar admin</button>
+      <button matButton="elevated" (click)="goToAdmin()" data-testid="redirect-button-admin">
+        Acessar admin
+      </button>
     </div>
   </div>
 </header>

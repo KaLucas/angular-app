@@ -10,7 +10,7 @@ const USER = {
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly _isAuthenticated = signal(false);
+  private readonly _isAuthenticated = signal(!!localStorage.getItem('token'));
   readonly isAuthenticated = this._isAuthenticated.asReadonly();
 
   constructor(private router: Router) {}

@@ -89,7 +89,7 @@ describe('Sidebar', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const summaryCard = compiled.querySelector('[data-testid="users-summary-card"]');
+    const summaryCard = compiled.querySelector('[data-testid="user-summary-card"]');
     const totalUsers = compiled.querySelector('[data-testid="total-users"]');
 
     expect(summaryCard).toBeTruthy();

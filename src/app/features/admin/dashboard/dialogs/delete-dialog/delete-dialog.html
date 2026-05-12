@@ -1,14 +1,16 @@
-<h3 mat-dialog-title data-testid="delete-title">
-  Deseja deletar o usuário <strong>{{ data.data.first_name }} {{ data.data.last_name }}</strong
-  >?
-</h3>
-<mat-dialog-actions align="end">
-  <button matButton mat-dialog-close>Cancelar</button>
-  <button matButton [mat-dialog-close]="true" (click)="onDelete()">
-    @if (isSubmitted()) {
-      <mat-progress-spinner diameter="20" mode="indeterminate" />
-    } @else {
-      Confirmar
-    }
-  </button>
-</mat-dialog-actions>
+<form method="dialog">
+  <h3 mat-dialog-title data-testid="delete-title">
+    Deseja deletar o usuário <strong>{{ data.data.first_name }} {{ data.data.last_name }}</strong
+    >?
+  </h3>
+  <mat-dialog-actions align="end">
+    <button matButton mat-dialog-close>Cancelar</button>
+    <button matButton [mat-dialog-close]="true" (click)="onDelete()">
+      @if (isSubmitted()) {
+        <mat-progress-spinner diameter="20" mode="indeterminate" />
+      } @else {
+        Confirmar
+      }
+    </button>
+  </mat-dialog-actions>
+</form>

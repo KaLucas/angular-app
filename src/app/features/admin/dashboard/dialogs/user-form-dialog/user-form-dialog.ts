@@ -37,6 +37,7 @@ export class UserFormDialog {
   protected readonly isSubmitted = signal(false);
 
   protected readonly title = this.data?.id ? 'Editar usuário' : 'Cadastrar novo usuário';
+  protected readonly buttonTitle = this.data?.id ? 'Salvar' : 'Criar';
 
   protected readonly userFormModel = signal<UserFormData>({
     first_name: '',

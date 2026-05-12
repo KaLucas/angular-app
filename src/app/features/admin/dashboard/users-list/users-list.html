@@ -1,7 +1,7 @@
 <section class="flex">
   <div class="page-header flex">
     <h2>Lista de Usuários</h2>
-    <button matFab extended (click)="openUserFormDialog()">
+    <button matFab extended (click)="openUserFormDialog()" data-testid="create-user">
       <mat-icon>add</mat-icon>
       Cadastrar Novo
     </button>
@@ -10,7 +10,12 @@
     @if (store.isLoading()) {
       <mat-progress-bar mode="indeterminate" />
     }
-    <table mat-table [dataSource]="store.users()" [class.loading]="store.isLoading()">
+    <table
+      mat-table
+      [dataSource]="store.users()"
+      [class.loading]="store.isLoading()"
+      data-testid="users-list-result"
+    >
       <ng-container matColumnDef="first_name">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
         <td mat-cell *matCellDef="let user">
@@ -45,10 +50,10 @@
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let user">
           <div class="actions-wrapper">
-            <button matIconButton (click)="openUserFormDialog(user)">
+            <button matIconButton (click)="openUserFormDialog(user)" data-testid="edit-user">
               <mat-icon>edit</mat-icon>
             </button>
-            <button matIconButton (click)="openDeleteDialog(user)">
+            <button matIconButton (click)="openDeleteDialog(user)" data-testid="delete-user">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

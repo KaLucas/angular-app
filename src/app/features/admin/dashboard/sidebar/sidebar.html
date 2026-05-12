@@ -1,12 +1,14 @@
 <aside class="flex">
   <div class="menu-wrapper flex">
     <div class="top-menu flex">
-      <div class="user-summary-card flex" data-testid="users-summary-card">
+      <div class="user-summary-card flex" data-testid="user-summary-card">
         <div class="users-data flex">
           <mat-icon>groups</mat-icon>
           <p class="users-title">Total de usuários</p>
         </div>
-        <p class="users-total" data-testid="total-users">{{ store.meta()?.total }}</p>
+        <p class="users-total" data-testid="total-users" data-testid="sidebar-count">
+          {{ store.meta()?.total }}
+        </p>
         <p class="users-last-update">
           Último cadastro: {{ store.users()[0]?.created_at | date: 'dd/MM/yyyy' }}
         </p>
@@ -14,7 +16,7 @@
     </div>
     <div class="bottom-menu">
       <div class="logout flex">
-        <button matFab extended (click)="handleLogout()">
+        <button matFab extended (click)="handleLogout()" data-testid="logout-button">
           <mat-icon>logout</mat-icon>
           Logout
         </button>
