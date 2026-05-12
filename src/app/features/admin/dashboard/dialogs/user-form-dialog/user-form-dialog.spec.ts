@@ -14,7 +14,7 @@ const mockUser = {
 };
 
 describe('UserFormDialog', () => {
-  describe('create user', () => {
+  describe('Create user', () => {
     let component: UserFormDialog;
     let fixture: ComponentFixture<UserFormDialog>;
 
@@ -32,11 +32,11 @@ describe('UserFormDialog', () => {
       await fixture.whenStable();
     });
 
-    it('should create', () => {
+    it('Should create', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should have empty form', () => {
+    it('Should have empty form', () => {
       const compiled = fixture.nativeElement as HTMLElement;
 
       const inputFirstName = compiled.querySelector('input[data-testid="input-first-name"]');
@@ -69,11 +69,11 @@ describe('UserFormDialog', () => {
       await fixture.whenStable();
     });
 
-    it('should create', () => {
+    it('Should create', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should populate form with user data', () => {
+    it('Should populate form with user data', () => {
       const compiled = fixture.nativeElement as HTMLElement;
 
       const inputFirstName = compiled.querySelector('input[data-testid="input-first-name"]');

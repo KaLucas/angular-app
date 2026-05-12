@@ -75,14 +75,14 @@ describe('Sidebar', () => {
     );
   }
 
-  it('should create', async () => {
+  it('Should create', async () => {
     fixture.detectChanges();
     flushUsers();
     await fixture.whenStable();
     expect(component).toBeTruthy();
   });
 
-  it('should render card', async () => {
+  it('Should render card', async () => {
     fixture.detectChanges();
     flushUsers();
     await fixture.whenStable();

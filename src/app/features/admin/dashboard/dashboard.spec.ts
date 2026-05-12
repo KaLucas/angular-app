@@ -30,11 +30,11 @@ describe('Dashboard', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render sidebar and users list', () => {
+  it('Should render sidebar and users list', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const sidebar = compiled.querySelector('[data-testid="sidebar-component"]');
     const usersList = compiled.querySelector('[data-testid="users-list-component"]');

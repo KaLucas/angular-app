@@ -35,11 +35,11 @@ describe('Main', () => {
     httpMock.verify();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('Should render title', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h2')?.textContent).toContain('Usuários cadastrados');
   });

@@ -10,7 +10,7 @@ describe('SnackbarService', () => {
     service = TestBed.inject(SnackbarService);
   });
 
-  it('should be created', () => {
+  it('Should be created', () => {
     expect(service).toBeTruthy();
   });
 });

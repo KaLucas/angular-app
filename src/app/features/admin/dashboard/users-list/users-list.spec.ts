@@ -70,14 +70,14 @@ describe('UsersList', () => {
     );
   }
 
-  it('should create', async () => {
+  it('Should create', async () => {
     fixture.detectChanges();
     flushUsers();
     await fixture.whenStable();
     expect(component).toBeTruthy();
   });
 
-  it('should render users', async () => {
+  it('Should render users', async () => {
     fixture.detectChanges();
     flushUsers();
     await fixture.whenStable();
@@ -87,7 +87,7 @@ describe('UsersList', () => {
     expect(rows.length).toBe(mockData.length);
   });
 
-  it('should render table', async () => {
+  it('Should render table', async () => {
     fixture.detectChanges();
     flushUsers();
     await fixture.whenStable();

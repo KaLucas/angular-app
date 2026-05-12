@@ -32,11 +32,11 @@ describe('DeleteDialog', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display user name on dialog title', () => {
+  it('Should display user name on dialog title', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const dialogTitle = compiled.querySelector('[data-testid="delete-title"]');
 

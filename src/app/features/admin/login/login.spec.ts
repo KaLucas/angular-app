@@ -18,17 +18,17 @@ describe('Login', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render login button', () => {
+  it('Should render login button', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const button = compiled.querySelector('button[type="button"]');
     expect(button?.textContent?.trim()).toContain('Login');
   });
 
-  it('should disable button when form is invalid', () => {
+  it('Should disable button when form is invalid', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const button = compiled.querySelector('button[type="button"]') as HTMLButtonElement;
     expect(button.disabled).toBe(true);
