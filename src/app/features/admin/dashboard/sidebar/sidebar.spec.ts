@@ -82,7 +82,7 @@ describe('Sidebar', () => {
     expect(component).toBeTruthy();
   });
 
-  it.only('Should render summary card', async () => {
+  it('Should render summary card', async () => {
     fixture.detectChanges();
     flushUsers();
     await fixture.whenStable();
