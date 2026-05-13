@@ -12,6 +12,7 @@
 - [Tecnologias](#-tecnologias)
 - [Pré-requisitos](#-pré-requisitos)
 - [Instalação](#-instalação)
+- [Acesso](#-acesso)
 - [Como Usar](#️-como-usar)
 - [Testes](#-testes)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
