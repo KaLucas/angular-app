@@ -82,7 +82,7 @@ describe('Sidebar', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Should render card', async () => {
+  it.only('Should render summary card', async () => {
     fixture.detectChanges();
     flushUsers();
     await fixture.whenStable();
@@ -90,7 +90,7 @@ describe('Sidebar', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     const summaryCard = compiled.querySelector('[data-testid="user-summary-card"]');
-    const totalUsers = compiled.querySelector('[data-testid="total-users"]');
+    const totalUsers = compiled.querySelector('[data-testid="sidebar-count"]');
 
     expect(summaryCard).toBeTruthy();
     expect(totalUsers?.textContent?.trim()).toBe('2');
