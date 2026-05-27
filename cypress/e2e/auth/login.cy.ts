@@ -10,7 +10,7 @@ describe('Login', () => {
     cy.get('h2').contains('Lista de Usuários').should('be.visible');
   });
 
-  it.only('Should show error on invalid login', () => {
+  it('Should show error on invalid login', () => {
     cy.visit('/admin');
 
     cy.get('[data-testid=login-email]').type('teste@email.com');
