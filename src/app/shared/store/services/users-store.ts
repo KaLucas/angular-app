@@ -20,13 +20,21 @@ export class UsersStore {
     stream: ({ params }) => this.userService.getUsers(params),
   });
 
-  readonly allUsersResource = rxResource({
-    stream: () => this.userService.getUsers(),
-  });
+  readonly users = () => {
+    try {
+      return this.usersResource.value()?.data ?? [];
+    } catch {
+      return [];
+    }
+  };
 
-  readonly allUsers = () => this.allUsersResource.value()?.data ?? [];
-  readonly users = () => this.usersResource.value()?.data ?? [];
-  readonly meta = () => this.usersResource.value()?.meta ?? null;
+  readonly meta = () => {
+    try {
+      return this.usersResource.value()?.meta ?? null;
+    } catch {
+      return null;
+    }
+  };
   readonly isLoading = () => this.usersResource.isLoading();
   readonly error = () => this.usersResource.error();
 

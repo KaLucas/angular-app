@@ -35,5 +35,25 @@ main {
         }
       }
     }
+    .error-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 50px;
+      &.hidden {
+        display: none;
+      }
+      mat-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 30px;
+        color: var(--mat-sys-on-error-container);
+      }
+      p {
+        font-size: 20px;
+      }
+    }
   }
 }

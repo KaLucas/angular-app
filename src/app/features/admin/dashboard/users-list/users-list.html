@@ -9,66 +9,71 @@
   <div class="table-wrapper">
     @if (store.isLoading()) {
       <mat-progress-bar mode="indeterminate" />
+    } @else if (store.error()) {
+      <p class="empty">Erro ao buscar informações</p>
+    } @else if (store.users().length) {
+      <table
+        mat-table
+        [dataSource]="store.users()"
+        [class.loading]="store.isLoading()"
+        data-testid="users-list-result"
+      >
+        <ng-container matColumnDef="first_name">
+          <th mat-header-cell *matHeaderCellDef>Nome</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.data.first_name }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="last_name">
+          <th mat-header-cell *matHeaderCellDef>Sobrenome</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.data.last_name }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>E-mail</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.data.email }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="created_at">
+          <th mat-header-cell *matHeaderCellDef>Criado em</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.created_at | date: 'dd/MM/yyyy' }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="updated_at">
+          <th mat-header-cell *matHeaderCellDef>Atualizado em</th>
+          <td mat-cell *matCellDef="let user">
+            {{ user.updated_at | date: 'dd/MM/yyyy' }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let user">
+            <div class="actions-wrapper">
+              <button matIconButton (click)="openUserFormDialog(user)" data-testid="edit-user">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button matIconButton (click)="openDeleteDialog(user)" data-testid="delete-user">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        [length]="store.meta()?.total ?? 0"
+        [pageSize]="store.meta()?.limit ?? 10"
+        [pageSizeOptions]="[10, 25]"
+        (page)="onPageChange($event)"
+        [disabled]="store.isLoading()"
+        showFirstLastButtons
+      />
+    } @else {
+      <p class="empty">Não existem dados a serem exibidos.</p>
     }
-    <table
-      mat-table
-      [dataSource]="store.users()"
-      [class.loading]="store.isLoading()"
-      data-testid="users-list-result"
-    >
-      <ng-container matColumnDef="first_name">
-        <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let user">
-          {{ user.data.first_name }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="last_name">
-        <th mat-header-cell *matHeaderCellDef>Sobrenome</th>
-        <td mat-cell *matCellDef="let user">
-          {{ user.data.last_name }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>E-mail</th>
-        <td mat-cell *matCellDef="let user">
-          {{ user.data.email }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="created_at">
-        <th mat-header-cell *matHeaderCellDef>Criado em</th>
-        <td mat-cell *matCellDef="let user">
-          {{ user.created_at | date: 'dd/MM/yyyy' }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="updated_at">
-        <th mat-header-cell *matHeaderCellDef>Atualizado em</th>
-        <td mat-cell *matCellDef="let user">
-          {{ user.updated_at | date: 'dd/MM/yyyy' }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Ações</th>
-        <td mat-cell *matCellDef="let user">
-          <div class="actions-wrapper">
-            <button matIconButton (click)="openUserFormDialog(user)" data-testid="edit-user">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button matIconButton (click)="openDeleteDialog(user)" data-testid="delete-user">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <mat-paginator
-      [length]="store.meta()?.total ?? 0"
-      [pageSize]="store.meta()?.limit ?? 10"
-      [pageSizeOptions]="[10, 25]"
-      (page)="onPageChange($event)"
-      [disabled]="store.isLoading()"
-      showFirstLastButtons
-    />
   </div>
 </section>

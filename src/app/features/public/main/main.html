@@ -13,15 +13,29 @@
 </header>
 <main>
   <div class="main-wrapper">
-    <div class="main-content">
-      @for (user of users(); track user.id) {
-        <mat-card>
-          <mat-card-content>
-            <h3>{{ user.data.first_name }} {{ user.data.last_name }}</h3>
-            <p>{{ user.data.email }}</p>
-          </mat-card-content>
-        </mat-card>
-      }
-    </div>
+    @if (isLoadingAllUsers()) {
+      <mat-progress-bar mode="indeterminate" />
+    } @else if (errorAllUsers()) {
+      <div class="error-message">
+        <mat-icon>error</mat-icon>
+        <p>Erro ao buscar informações</p>
+      </div>
+    } @else if (allUsers().length) {
+      <div class="main-content">
+        @for (user of allUsers(); track user.id) {
+          <mat-card>
+            <mat-card-content>
+              <h3>{{ user.data.first_name }} {{ user.data.last_name }}</h3>
+              <p>{{ user.data.email }}</p>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    } @else {
+      <div class="error-message">
+        <mat-icon>web_asset_off</mat-icon>
+        <p>Não há usuários cadastrados</p>
+      </div>
+    }
   </div>
 </main>

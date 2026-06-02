@@ -14,6 +14,13 @@ section {
     border-radius: 4px;
     overflow: hidden;
     position: relative;
+    p {
+      &.empty {
+        font-size: 20px;
+        text-align: center;
+        margin: 20px 0;
+      }
+    }
 
     table {
       &.loading {
