@@ -126,6 +126,8 @@ Os arquivos otimizados serão gerados na pasta `dist/`, prontos para deploy.
 
 O projeto conta com dois tipos de teste:
 
+> 💡 **Nota:** A cobertura de testes foi desenvolvida com auxílio de IA, com revisão e validação de cada caso de teste para garantir que refletem o comportamento real da aplicação.
+
 ### Testes Unitários — Vitest
 
 Utiliza o **[Vitest](https://vitest.dev/)** com **Browser Mode** via `@angular/build:unit-test`, cobrindo services, guards e componentes isolados.
