@@ -109,4 +109,20 @@ describe('UsersList', () => {
       datePipe.transform(mockData[0].updated_at, 'dd/MM/yyyy'),
     );
   });
+
+  it('Should show error message when request fails', async () => {
+    fixture.detectChanges();
+
+    const requests = httpMock.match((req) => req.url.includes('collections/users/records'));
+    requests.forEach((req) => req.flush('Forbidden', { status: 403, statusText: 'Forbidden' }));
+
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const errorMessage = compiled.querySelector('.empty-message');
+
+    expect(errorMessage).toBeTruthy();
+    expect(errorMessage?.textContent?.trim()).toContain('Erro ao buscar informações');
+  });
 });

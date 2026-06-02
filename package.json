@@ -1,7 +1,7 @@
 {
   "name": "angular-app",
   "version": "1.0.0",
-  "author": "Karina Lucas <karina@email.com>",
+  "author": "Karina Lucas <karina.lucas@gmail.com>",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --o",

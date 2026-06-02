@@ -10,7 +10,7 @@
     @if (store.isLoading()) {
       <mat-progress-bar mode="indeterminate" />
     } @else if (store.error()) {
-      <p class="empty">Erro ao buscar informações</p>
+      <p class="empty-message">Erro ao buscar informações</p>
     } @else if (store.users().length) {
       <table
         mat-table
@@ -73,7 +73,7 @@
         showFirstLastButtons
       />
     } @else {
-      <p class="empty">Não existem dados a serem exibidos.</p>
+      <p class="empty-message">Não existem dados a serem exibidos.</p>
     }
   </div>
 </section>
