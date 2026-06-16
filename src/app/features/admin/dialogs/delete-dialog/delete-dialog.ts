@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '../../../../../services/users-service';
-import { User } from '../../../../../shared/models/user.model';
-import { SnackbarService } from '../../../../../shared/utils/snackbar-service';
+import { UserService } from '../../../../services/users-service';
+import { User } from '../../../../shared/models/user.model';
+import { SnackbarService } from '../../../../shared/utils/snackbar-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({

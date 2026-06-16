@@ -1,12 +1,12 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { User } from '../../../../../shared/models/user.model';
+import { User } from '../../../../shared/models/user.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { email, form, FormField, required } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
-import { UserService } from '../../../../../services/users-service';
-import { SnackbarService } from '../../../../../shared/utils/snackbar-service';
+import { UserService } from '../../../../services/users-service';
+import { SnackbarService } from '../../../../shared/utils/snackbar-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 interface UserFormData {
