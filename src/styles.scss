@@ -50,10 +50,6 @@ mat-form-field {
   width: 300px;
 }
 
-.mat-mdc-form-field-subscript-wrapper:not(:has(mat-error)) {
-  display: none;
-}
-
 .flex {
   display: flex;
 }
@@ -81,4 +77,13 @@ mat-form-field {
 p {
   margin: 0;
 }
+
+form {
+  flex-direction: column;
+  mat-dialog-content.mat-mdc-dialog-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 

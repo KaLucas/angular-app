@@ -1,29 +1,34 @@
-import { Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-
-const USER = {
-  email: 'admin@email.com',
-  password: '123456',
-};
+import { Register } from '../shared/models/register.model';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private http = inject(HttpClient);
+  private readonly baseUrl = 'https://portfolio-api-e8at.onrender.com';
   private readonly _isAuthenticated = signal(!!localStorage.getItem('token'));
   readonly isAuthenticated = this._isAuthenticated.asReadonly();
 
+  readonly isLoading = signal(false);
+  readonly error = signal<string | null>(null);
+
   constructor(private router: Router) {}
 
-  login(email: string, password: string): boolean {
-    if (email === USER.email && password === USER.password) {
-      localStorage.setItem('token', 'fake-token');
-      this._isAuthenticated.set(true);
+  createRegister(data: Register) {
+    return this.http.post(`${this.baseUrl}/register`, data);
+  }
 
-      return true;
-    }
-
-    return false;
+  login(data: { email: string; password: string }) {
+    return this.http.post<{ accessToken: string }>(`${this.baseUrl}/login`, data).pipe(
+      tap((response) => {
+        localStorage.setItem('token', response.accessToken);
+        this._isAuthenticated.set(true);
+      }),
+    );
   }
 
   logout(): void {

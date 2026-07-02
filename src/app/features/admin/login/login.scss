@@ -18,11 +18,20 @@ section {
       align-items: center;
       form {
         flex-direction: column;
+        gap: 30px;
+        .login, .register {
+          flex-direction: column;
+        }
         .field-wrapper {
-          padding-bottom: 20px;
+          &.flex {
+            flex-direction: column;
+          }
         }
       }
     }
   }
 }
 
+:host {
+  --mat-progress-spinner-active-indicator-color: var(--mat-sys-on-secondary);
+}

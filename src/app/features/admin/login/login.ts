@@ -7,6 +7,8 @@ import { AuthService } from '../../../services/auth-service';
 import { email, form, required, FormField } from '@angular/forms/signals';
 import { SnackbarService } from '../../../shared/utils/snackbar-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterLoginDialog } from '../dialogs/register-login-dialog/register-login-dialog';
 
 interface LoginData {
   email: string;
@@ -29,6 +31,7 @@ export class Login {
   private router = inject(Router);
   private snackbar = inject(SnackbarService);
   protected readonly isSubmitted = signal(false);
+  readonly dialog = inject(MatDialog);
 
   protected readonly loginModel = signal<LoginData>({
     email: '',
@@ -52,7 +55,7 @@ export class Login {
     this.isSubmitted.set(true);
 
     const { email, password } = this.loginModel();
-    const success = this.auth.login(email, password);
+    const success = this.auth.login({ email, password });
 
     if (success) {
       this.router.navigate(['/admin/dashboard']);
@@ -60,5 +63,17 @@ export class Login {
       this.isSubmitted.set(false);
       this.snackbar.error('E-mail ou senha inválidos.');
     }
+  }
+
+  openRegisterLoginFormDialog(): void {
+    const dialogRef = this.dialog.open(RegisterLoginDialog);
+
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result) {
+    //     setTimeout(() => {
+    //       this.store.reloadUsers();
+    //     }, 1000);
+    //   }
+    // });
   }
 }

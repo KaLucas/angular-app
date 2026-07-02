@@ -7,50 +7,70 @@
   <div class="login-container flex">
     <img src="/assets/angular-app.png" alt="Angular App Logo" class="logo" />
     <div class="form-container flex">
-      <form class="flex" method="dialog">
-        <div class="field-wrapper">
-          <mat-form-field>
-            <mat-label>E-mail</mat-label>
-            <input matInput type="email" [formField]="loginForm.email" data-testid="login-email" />
-          </mat-form-field>
-          @if (loginForm.email().touched()) {
-            @for (error of loginForm.email().errors(); track error.kind) {
-              <mat-error>{{ error.message }}</mat-error>
+      <form class="flex">
+        <div class="login flex">
+          <div class="field-wrapper">
+            <mat-form-field>
+              <mat-label>E-mail</mat-label>
+              <input
+                matInput
+                type="email"
+                [formField]="loginForm.email"
+                data-testid="login-email"
+              />
+            </mat-form-field>
+            @if (loginForm.email().touched()) {
+              @for (error of loginForm.email().errors(); track error.kind) {
+                <mat-error>{{ error.message }}</mat-error>
+              }
             }
-          }
-        </div>
-        <div class="field-wrapper">
-          <mat-form-field>
-            <mat-label>Senha</mat-label>
-            <input
-              matInput
-              type="password"
-              [formField]="loginForm.password"
-              data-testid="login-password"
-            />
-          </mat-form-field>
-          @if (loginForm.password().touched()) {
-            @for (error of loginForm.password().errors(); track error.kind) {
-              <mat-error>{{ error.message }}</mat-error>
+          </div>
+          <div class="field-wrapper">
+            <mat-form-field>
+              <mat-label>Senha</mat-label>
+              <input
+                matInput
+                type="password"
+                [formField]="loginForm.password"
+                data-testid="login-password"
+              />
+            </mat-form-field>
+            @if (loginForm.password().touched()) {
+              @for (error of loginForm.password().errors(); track error.kind) {
+                <mat-error>{{ error.message }}</mat-error>
+              }
             }
+          </div>
+          @if (invalidCredentials()) {
+            <mat-error>E-mail ou senha inválidos.</mat-error>
           }
+          <button
+            matButton="filled"
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="loginForm().invalid()"
+            data-testid="login-button"
+          >
+            @if (isSubmitted()) {
+              <mat-progress-spinner diameter="20" mode="indeterminate" />
+            } @else {
+              Login
+            }
+          </button>
         </div>
-        @if (invalidCredentials()) {
-          <mat-error>E-mail ou senha inválidos.</mat-error>
-        }
-        <button
-          matButton="filled"
-          type="button"
-          (click)="onSubmit()"
-          [disabled]="loginForm().invalid()"
-          data-testid="login-button"
-        >
-          @if (isSubmitted()) {
-            <mat-progress-spinner diameter="20" mode="indeterminate" />
-          } @else {
-            Login
-          }
-        </button>
+        <div class="register">
+          <div class="field-wrapper flex">
+            <mat-label>Não possui cadastro?</mat-label>
+            <button
+              matButton="filled"
+              type="button"
+              (click)="openRegisterLoginFormDialog()"
+              data-testid="login-button"
+            >
+              Cadastre-se
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
